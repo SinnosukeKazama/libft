@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 08:38:27 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/22 13:04:04 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/24 07:17:02 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ static size_t	ft_strlento(const char c, const char *s)
 	return (i);
 }
 
-static char	*ft_skip_first(const char c, const char *s)
+void	free_all(char **s, size_t index)
 {
-	char	*p;
+	size_t	i;
 
-	p = (char *)s;
-	while (*p == c)
-		++p;
-	return (p);
+	i = 0;
+	while (i < index)
+	{
+		free(s[i]);
+		++i;
+	}
+	free(s);
 }
 
 static size_t	ft_count_row(const char c, const char *s)
@@ -49,7 +52,7 @@ static size_t	ft_count_row(const char c, const char *s)
 	}
 	return (row);
 }
-static void	ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
+static char	**ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
 {
 	size_t	i;
 	size_t	j;
@@ -65,9 +68,15 @@ static void	ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
 			while (ptr_s[i] == c && ptr_s[i] != '\0')
 				++i;
 			s_spl[++j] = ft_substr(&ptr_s[i], 0, ft_strlento(c, &ptr_s[i]));
+			if (!s_spl[j])
+			{
+				free_all(s_spl, j);
+				return (NULL);
+			}
 		}
 		++i;
 	}
+	return (s_spl);
 }
 char	**ft_split(const char *s, char c)
 {
@@ -75,12 +84,16 @@ char	**ft_split(const char *s, char c)
 	size_t	row;
 	char	*ptr_s;
 
-	ptr_s = ft_skip_first(c, s);
+	ptr_s = (char *)s;
+	while (*ptr_s == c)
+		++ptr_s;
 	row = ft_count_row(c, ptr_s);
 	s_spl = (char **)ft_calloc(row + 1, sizeof(char *));
 	if (!s_spl)
 		return (NULL);
-	ft_makesubstr(s_spl, ptr_s, c, row);
+	s_spl = ft_makesubstr(s_spl, ptr_s, c, row);
+	if (!s_spl)
+		return (NULL);
 	s_spl[row] = NULL;
 	return (s_spl);
 }

@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:34:54 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/22 13:08:57 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/24 07:18:33 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,10 +204,17 @@ int main(void)
 //test strsplit
 	char s[] = "  re   using this track, we simply ask that you put this in your description  ";
 	char **d = ft_split(s, ' ');
+	char **d2 = ft_split(s, 'y');
 	size_t i = 0;
 	while (d[i] != NULL)
 	{
-		printf("main:d[%lld]:#%s#\n",i,d[i]);
+		printf("main:d[%ld]:#%s#\n",i,d[i]);
+		++i;
+	}
+	i = 0;
+	while (d2[i] != NULL)
+	{
+		printf("main:d2[%ld]:#%s#\n",i,d2[i]);
 		++i;
 	}
 	return (0);
