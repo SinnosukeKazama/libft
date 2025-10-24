@@ -6,13 +6,14 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:26:38 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/24 10:03:31 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/24 13:48:16 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> //size_t
-#include <stdio.h>  //for debug
+#include <stdio.h>  //######for debug
 #include <stdlib.h> //malloc
+#include <stdint.h> //SIZE_MAX
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
