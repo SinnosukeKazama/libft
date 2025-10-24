@@ -6,23 +6,25 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:34:54 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/24 07:18:33 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/24 10:16:10 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 //#include <string.h>
 //#include <stdlib.h>
 int main(void)
 {
-/*
+#ifdef RUN
+
 //test alnum
 	printf("%d", ft_isalnum('A'));
 	printf("%d", ft_isalnum('2'));
 	printf("%d", ft_isalnum(' '));
 //test strlen
 	printf("%ld", ft_strlen("ABCD"));
-*/
+#endif
 //test memset
 /*	char buf1[0x3];
 	char buf2[0xf];
@@ -202,7 +204,7 @@ int main(void)
 	printf("%s", ft_strtrim(s, set));
 */
 //test strsplit
-	char s[] = "  re   using this track, we simply ask that you put this in your description  ";
+/*	char s[] = "  re   using this track, we simply ask that you put this in your description  ";
 	char **d = ft_split(s, ' ');
 	char **d2 = ft_split(s, 'y');
 	size_t i = 0;
@@ -217,5 +219,26 @@ int main(void)
 		printf("main:d2[%ld]:#%s#\n",i,d2[i]);
 		++i;
 	}
+*/
+	//int	m = INT_MIN;
+	int	n = INT_MAX;
+	
+	printf("int:%d#itoa:%s#\n", n+1,ft_itoa(n+1));
+/*	while (m < 0 && n > 0)
+	{
+		printf("n:%d#itoa:%s#\nm:%d#itoa", n, ft_itoa(n));
+	}
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
+	n = 1234;
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));	
+	n = INT_MAX;
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
+	n = INT_MIN;;
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
+	n = 0;
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
+	n = 1;
+	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
+*/
 	return (0);
 }
