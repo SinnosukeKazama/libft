@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 08:38:27 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/24 07:17:02 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/25 07:23:54 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	ft_strlento(const char c, const char *s)
 	return (i);
 }
 
-void	free_all(char **s, size_t index)
+static void	free_all(char **s, size_t index)
 {
 	size_t	i;
 
@@ -52,6 +52,7 @@ static size_t	ft_count_row(const char c, const char *s)
 	}
 	return (row);
 }
+
 static char	**ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
 {
 	size_t	i;
@@ -62,7 +63,6 @@ static char	**ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
 	s_spl[j] = ft_substr(ptr_s, i, ft_strlento(c, ptr_s));
 	while (ptr_s[i] != '\0' && j < row)
 	{
-		
 		if (ptr_s[i] == c)
 		{
 			while (ptr_s[i] == c && ptr_s[i] != '\0')
@@ -78,6 +78,7 @@ static char	**ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
 	}
 	return (s_spl);
 }
+
 char	**ft_split(const char *s, char c)
 {
 	char	**s_spl;

@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:34:54 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/24 10:16:10 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/26 14:05:21 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 //#include <stdlib.h>
 int main(void)
 {
-#ifdef RUN
-
 //test alnum
-	printf("%d", ft_isalnum('A'));
-	printf("%d", ft_isalnum('2'));
-	printf("%d", ft_isalnum(' '));
+	ft_putendl_fd("test alnum----------------------",1);
+	ft_putnbr_fd(ft_isalnum('A'),1);
+	ft_putnbr_fd(ft_isalnum('2'),1);
+	ft_putnbr_fd(ft_isalnum(' '),1);
+	ft_putendl_fd("",1);
 //test strlen
-	printf("%ld", ft_strlen("ABCD"));
-#endif
+	ft_putendl_fd("test strlen----------------------",1);
+	ft_putnbr_fd(ft_strlen("ABCD"), 1);
+	ft_putendl_fd("",1);
+
 //test memset
 /*	char buf1[0x3];
 	char buf2[0xf];
@@ -193,7 +195,7 @@ int main(void)
 //test strjoin
 /*
 	char s1[] = "ABCDEF";
-	char s2[] = "";
+`	char s2[] = "";
 
 	printf("%s\n", ft_strjoin(s1, s2));
 	*/
@@ -220,11 +222,12 @@ int main(void)
 		++i;
 	}
 */
+/*
 	//int	m = INT_MIN;
 	int	n = INT_MAX;
 	
 	printf("int:%d#itoa:%s#\n", n+1,ft_itoa(n+1));
-/*	while (m < 0 && n > 0)
+	while (m < 0 && n > 0)
 	{
 		printf("n:%d#itoa:%s#\nm:%d#itoa", n, ft_itoa(n));
 	}
@@ -240,5 +243,15 @@ int main(void)
 	n = 1;
 	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
 */
+//test strmapi -> to the file.
+//test striteri - to the file.
+
+//test putchar_fd, putstr_fd, putnbr_fd
+ft_putendl_fd("test putchar_fd, putstr_fd, putnbr_fd------------------", 1);
+ft_putendl_fd("ABC", 1);//ok
+ft_putendl_fd("The unsigned integer types are ideal for uses that treat storage as a bit array. Using an unsigned instead of an int to gain one more bit to represent positive integers is almost never a good idea. Attempts to ensure that some values are positive by declaring variables unsigned will typically be defeated by the implicit conversion rules.", 1);//ok
+ft_putnbr_fd(5000, 1);//ok
+ft_putendl_fd(0, 1);//nothing output -> ok
+
 	return (0);
 }

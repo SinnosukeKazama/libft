@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 09:13:56 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/22 12:41:32 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/25 07:30:32 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	return (NULL);
 }
+/*
+value i = s's null or index of len
+
+*/

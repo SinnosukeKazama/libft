@@ -6,7 +6,7 @@
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 09:19:46 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/17 09:24:55 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:27:11 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,14 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[dest_len + i] = '\0';
 	return (dest_len + src_len);
 }
+/*
+dest.."abc" .3
+src..."ABC".3
+size..9
+
+(i < size - dest_len - 1)
+5-3-1=1 -> 
+7-3-1=3
+9-3-1=5
+
+*/
