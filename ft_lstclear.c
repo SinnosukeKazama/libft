@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 08:35:08 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 12:30:38 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/29 09:04:22 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/29 09:42:39 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	long int	ln;
-	
-	ln = n;
-	if (ln < 0)
+	t_list	*ptr_l;
+	t_list	*ptr_n;
+
+	ptr_l = *lst;
+	while (ft_lstsize(ptr_l))
 	{
-		ln *= -1;
-		ft_putchar_fd('-', fd);
+printf("\n##lstclear:ptr_l:%p\n", ptr_l);
+		ptr_n = ptr_l->next;
+		ft_lstdelone(ptr_l, del);
+		ptr_l = ptr_n;
 	}
-	if (ln < 10)
-	{
-		ft_putchar_fd((signed char)ln + '0', fd);	
-		return ;
-	}
-	else if (ln > 9)
-	{
-		ft_putnbr_fd(ln / 10,fd);
-		ft_putnbr_fd(ln % 10,fd);
-	}
+	*lst = NULL;
 }

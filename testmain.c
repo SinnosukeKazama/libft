@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:34:54 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/26 14:05:21 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/29 12:32:37 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 #include <limits.h>
 //#include <string.h>
 //#include <stdlib.h>
+void	free_content(void *delcon)//for lstdelone, lstclear
+{
+	free(delcon);
+}
+
+void	put_content(void *content)//for lstiter
+{
+	printf("content:%s\n", (char *)content);
+}
+
 int main(void)
 {
 //test alnum
 	ft_putendl_fd("test alnum----------------------",1);
-	ft_putnbr_fd(ft_isalnum('A'),1);
-	ft_putnbr_fd(ft_isalnum('2'),1);
-	ft_putnbr_fd(ft_isalnum(' '),1);
+	ft_putnbr_fd(ft_isalnum('A'),1);//must be 0<return
+	ft_putnbr_fd(ft_isalnum('2'),1);//,,
+	ft_putnbr_fd(ft_isalnum(' '),1);//0
 	ft_putendl_fd("",1);
 //test strlen
 	ft_putendl_fd("test strlen----------------------",1);
@@ -98,7 +108,7 @@ int main(void)
 */
 //test strnstr
 /*	char b[] = "ABCDEF";
-	char l[] = "CD";
+	char l[]void (*del)(void = "CD";
 	char e[] = {'\0'};	
 	printf("%s\n", ft_strnstr(b, e, ft_strlen(b)));//ABCDEF	
 	printf("%p\n", ft_strnstr(b, "FG", ft_strlen(b)));//null	
@@ -247,11 +257,72 @@ int main(void)
 //test striteri - to the file.
 
 //test putchar_fd, putstr_fd, putnbr_fd
-ft_putendl_fd("test putchar_fd, putstr_fd, putnbr_fd------------------", 1);
-ft_putendl_fd("ABC", 1);//ok
-ft_putendl_fd("The unsigned integer types are ideal for uses that treat storage as a bit array. Using an unsigned instead of an int to gain one more bit to represent positive integers is almost never a good idea. Attempts to ensure that some values are positive by declaring variables unsigned will typically be defeated by the implicit conversion rules.", 1);//ok
-ft_putnbr_fd(5000, 1);//ok
-ft_putendl_fd(0, 1);//nothing output -> ok
+	ft_putendl_fd("test putchar_fd, putstr_fd, putnbr_fd------------------", 1);
+	ft_putendl_fd("ABC", 1);//ok
+	ft_putendl_fd("The unsigned integer types are ideal for uses that treat storage as a bit array. Using an unsigned instead of an int to gain one more bit to represent positive integers is almost never a good idea. Attempts to ensure that some values are positive by declaring variables unsigned will typically be defeated by the implicit conversion rules.", 1);//ok
+	ft_putnbr_fd(5000, 1);//
+	ft_putendl_fd(0, 1);//nothing output -> ok
+//test lstnew
+//test lstadd_front, lstsize
+	
+	ft_putendl_fd("test lstnew------------------", 1);
+	ft_putendl_fd("test lstadd_front, lstsize------------------", 1);	
+	
+	printf("lstsize:%d\n",ft_lstsize(NULL));//must be 3->ok
+	printf("last of list:%p\n", ft_lstlast(NULL));//must be l1`s ptr.->ok
+	char *c1 = ft_strdup("THIS IS CONTENT OF L1.");
+	if (!c1)
+		return (1);
+	t_list *l1 = ft_lstnew(c1);
+	if (l1)
+	{
+		ft_putendl_fd(l1->content, 1);//ok
+		printf("%p\n",l1->next);//null
+	}
+	printf("l1:%p, l1->content:%p, l1->next:%p\n",l1, l1->content, l1->next);
+	printf("last of list:%p\n", ft_lstlast(l1));//must be l1`s ptr.->ok	
+	
+	char *c2 = ft_strdup("THIS IS CONTENT OF L2.");
+	if (!c2)
+		return (1);
+	t_list *l2 = ft_lstnew(c2);
+	if (l2)
+	{
+		ft_lstadd_front(&l1, l2);// (front) l2->l1 (end)
+	}
+	printf("l1:%p, l1->content:%p, l1->next:%p\n",l1, l1->content, l1->next);
+	printf("l2:%p, l2->content:%p, l2->next:%p\n",l2, l2->content, l2->next);//must be begginning
+	printf("lstsize:%d\n",ft_lstsize(l2));//must be 2->ok
+	char *c3 = ft_strdup("THIS IS CONTENT OF L3.");
+	if (!c3)
+		return (1);
+	t_list *l3 = ft_lstnew(c3);
+	if (l3)
+	{
+		ft_lstadd_front(&l2, l3);// (front) l3->l2->l1 (end)
+	}
+	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
+	printf("l2:%p, l2->content:%p(%s), l2->next:%p\n",l2, l2->content,(char *)l2->content, l2->next);
+	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);//must be begginning->ok
+	printf("lstsize:%d\n",ft_lstsize(l3));//must be 3->ok
+	printf("last of list:%p\n", ft_lstlast(l3));//must be l1`s ptr.->ok
+//test lstdelone
+//	ft_lstdelone(l2, free_content);
+	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
+	printf("l2:%p, l2->content:%p(%s), l2->next:%p\n",l2, l2->content,(char *)l2->content, l2->next);
+	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);
+//test lstclear
+//	ft_lstclear(&l2, free_content);
+	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
+	printf("l2:%p, l2->content:%p(%s)",l2, l2->content,(char *)l2->content);//must be delete,and ptr_l2 = NULL. 
+	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);//must be exsit.
 
+//	ft_lstclear(&l3, free_content);//must be NON LEAK->ok, but ft_putnbr_fd(); will LEAK....for using itoa();
+//test lstiter
+	ft_putendl_fd("test lstiter----------------------",1);
+	ft_lstiter(l3, put_content);
+	unsigned int	i;
+
+	i = 0;
 	return (0);
 }

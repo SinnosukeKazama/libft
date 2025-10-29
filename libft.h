@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:26:38 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/26 13:59:55 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/29 10:21:27 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdint.h> //SIZE_MAX
 #include <unistd.h> //write
 
+#include <stdio.h>
 typedef struct s_list
 {
  void		*content;
@@ -55,3 +56,10 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int	ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));

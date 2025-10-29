@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 08:35:08 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 12:30:38 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/29 12:36:38 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/29 12:37:01 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnbr_fd(int n, int fd)
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	long int	ln;
-	
-	ln = n;
-	if (ln < 0)
-	{
-		ln *= -1;
-		ft_putchar_fd('-', fd);
-	}
-	if (ln < 10)
-	{
-		ft_putchar_fd((signed char)ln + '0', fd);	
-		return ;
-	}
-	else if (ln > 9)
-	{
-		ft_putnbr_fd(ln / 10,fd);
-		ft_putnbr_fd(ln % 10,fd);
-	}
+
 }
