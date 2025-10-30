@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 10:12:26 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/27 10:34:33 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/27 09:01:39 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/27 10:11:46 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft_bonus.h"
 
-t_list *ft_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
+	int	count;
 	t_list	*ptr_l;
 
+	count = 0;
 	ptr_l = lst;
-	if (ptr_l == NULL)
-		return (NULL);
-	while (ft_lstsize(ptr_l) - 1)
+	while (ptr_l != NULL)
 	{
+		++count;
 		ptr_l = ptr_l->next;
 	}
-	return (ptr_l);
+	return (count);
 }

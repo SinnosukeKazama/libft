@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 12:36:38 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 12:37:01 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/29 10:05:45 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/29 10:30:24 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
+#include "libft.h"
+#include "libft_bonus.h"
 
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*ptr_l;
+
+	ptr_l = lst;
+	if (!lst || !f)
+		return ;
+	while (ptr_l)
+	{
+		f(ptr_l->content);
+		ptr_l = ptr_l->next;
+	}
 }

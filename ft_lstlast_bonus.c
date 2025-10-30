@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 08:23:08 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/27 08:29:10 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/27 10:12:26 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/27 10:34:33 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft_bonus.h"
 
-t_list	*ft_lstnew(void *content)
+t_list *ft_lstlast(t_list *lst)
 {
-	t_list	*node_new;
+	t_list	*ptr_l;
 
-	node_new = (t_list *)ft_calloc(1, sizeof(t_list));
-	if (!node_new)
+	ptr_l = lst;
+	if (ptr_l == NULL)
 		return (NULL);
-	node_new->content = content;
-	node_new->next = NULL;
-	return (node_new);
+	while (ft_lstsize(ptr_l) - 1)
+	{
+		ptr_l = ptr_l->next;
+	}
+	return (ptr_l);
 }

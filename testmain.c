@@ -11,17 +11,31 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft_bonus.h"
 #include <limits.h>
 //#include <string.h>
 //#include <stdlib.h>
-void	free_content(void *delcon)//for lstdelone, lstclear
+static void	free_content(void *delcon)//for lstdelone, lstclear
 {
 	free(delcon);
 }
 
-void	put_content(void *content)//for lstiter
+static void	put_content(void *content)//for lstiter
 {
-	printf("content:%s\n", (char *)content);
+	printf("In put_content, content:%p(%s)\n", content, (char *)content);
+}
+
+static void	*strtolower(void *content)
+{
+	char	*s = (char *)content;
+	char	*d = ft_strdup(s);
+	unsigned int	i = 0;
+	while (s[i] != 0)
+	{
+		d[i] = ft_tolower(s[i]);
+		++i;
+	}
+	return (d);
 }
 
 int main(void)
@@ -232,27 +246,15 @@ int main(void)
 		++i;
 	}
 */
-/*
-	//int	m = INT_MIN;
+
 	int	n = INT_MAX;
-	
-	printf("int:%d#itoa:%s#\n", n+1,ft_itoa(n+1));
-	while (m < 0 && n > 0)
-	{
-		printf("n:%d#itoa:%s#\nm:%d#itoa", n, ft_itoa(n));
-	}
+	printf("int:%d#itoa:%s#\n", n+1,ft_itoa(n+1));//must be undefine move.
 	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
-	n = 1234;
-	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));	
-	n = INT_MAX;
-	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
-	n = INT_MIN;;
+	n = INT_MIN;
 	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
 	n = 0;
 	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
-	n = 1;
-	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
-*/
+
 //test strmapi -> to the file.
 //test striteri - to the file.
 
@@ -264,7 +266,7 @@ int main(void)
 	ft_putendl_fd(0, 1);//nothing output -> ok
 //test lstnew
 //test lstadd_front, lstsize
-	
+/*	
 	ft_putendl_fd("test lstnew------------------", 1);
 	ft_putendl_fd("test lstadd_front, lstsize------------------", 1);	
 	
@@ -312,17 +314,78 @@ int main(void)
 	printf("l2:%p, l2->content:%p(%s), l2->next:%p\n",l2, l2->content,(char *)l2->content, l2->next);
 	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);
 //test lstclear
-//	ft_lstclear(&l2, free_content);
+	ft_lstclear(&l2, free_content);
 	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
 	printf("l2:%p, l2->content:%p(%s)",l2, l2->content,(char *)l2->content);//must be delete,and ptr_l2 = NULL. 
 	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);//must be exsit.
-
-//	ft_lstclear(&l3, free_content);//must be NON LEAK->ok, but ft_putnbr_fd(); will LEAK....for using itoa();
+	ft_lstclear(&l3, free_content);//must be NON LEAK->ok.
+*/
+//test lstadd_back
+	printf("test lstadd_back------------------------------\n");
+	char	*content_front =	ft_strdup("THIS IS THE CONTENT OF NODE_FRONT!");
+	char	*content_second =	ft_strdup("THIS IS THE CONTENT OF NODE_SECOND!");
+	char	*content_third =	ft_strdup("THIS IS THE CONTENT OF NODE_THIRD!");
+	//error check/////////////
+	if (!content_front) return (1);
+	if (!content_second){free(content_front); return (1);};
+	if (!content_third){free(content_front); free(content_second); return (1);};
+	t_list	*node_front =	ft_lstnew(content_front);
+	t_list	*node_second =	ft_lstnew(content_second);
+	t_list	*node_third =	ft_lstnew(content_third);
+	if (!node_front){free(content_front);return (1);}
+	if (!node_second){ft_lstclear(&node_front, free_content); return (1);};
+	if (!node_third){ft_lstclear(&node_front,  free_content); return (1);};
+	//add back////////////////////////
+	ft_lstadd_back(&node_front, node_second);
+	ft_lstadd_back(&node_front, node_third);//must be like this,(front->second->third->NULL).
+	if ((node_front->next == node_second) && (node_second->next == node_third))
+		printf("SUCCESSED:linked.\n");
+	//out/////////////////////////////
+	printf("node_front :%p, ->content:%p(%s), ->next:%p\n",node_front, node_front->content,(char *)node_front->content, node_front->next);
+	printf("node_second:%p, ->content:%p(%s), ->next:%p\n",node_second, node_second->content,(char *)node_second->content, node_second->next);
+	printf("node_third :%p, ->content:%p(%s), ->next:%p\n",node_third, node_third->content,(char *)node_third->content, node_third->next);
 //test lstiter
-	ft_putendl_fd("test lstiter----------------------",1);
-	ft_lstiter(l3, put_content);
-	unsigned int	i;
+	ft_lstiter(node_front, put_content);
+	//delete all node.///////////////////////////////////
+	ft_lstclear(&node_front, free_content);
+	printf("clear done.\n\n");
 
-	i = 0;
+//test lstmap
+	
+	printf("test lstmap------------------------------\n");
+	content_front =	ft_strdup("THIS IS THE CONTENT OF NODE_FRONT!");
+	content_second =	ft_strdup("THIS IS THE CONTENT OF NODE_SECOND!");
+	content_third =	ft_strdup("THIS IS THE CONTENT OF NODE_THIRD!");
+	//error check/////////////
+	if (!content_front) return (1);
+	if (!content_second){free(content_front); return (1);};
+	if (!content_third){free(content_front); free(content_second); return (1);};
+	node_front =	ft_lstnew(content_front);
+	node_second =	ft_lstnew(content_second);
+	node_third =	ft_lstnew(content_third);
+	if (!node_front){free(content_front);return (1);}
+	if (!node_second){ft_lstclear(&node_front, free_content); return (1);};
+	if (!node_third){ft_lstclear(&node_front,  free_content); return (1);};
+	//link all nodes.////////////////////////
+	ft_lstadd_back(&node_front, node_second);
+	ft_lstadd_back(&node_front, node_third);//must be like this,(front->second->third->NULL).
+	if ((node_front->next == node_second) && (node_second->next == node_third))
+		printf("SUCCESSED:linked.\n");
+printf("node_front :%p, ->content:%p(%s), ->next:%p\n",node_front, node_front->content,(char *)node_front->content, node_front->next);
+	printf("node_second:%p, ->content:%p(%s), ->next:%p\n",node_second, node_second->content,(char *)node_second->content, node_second->next);
+	printf("node_third :%p, ->content:%p(%s), ->next:%p\n",node_third, node_third->content,(char *)node_third->content, node_third->next);
+	//test lstmap////////////////////
+	t_list	*node_front_new = ft_lstmap(node_front, strtolower, free_content);//lst -> make new lst -> free lst.
+	if (!node_front_new)
+	{
+		ft_lstclear(&node_front, free_content);
+		return (1);
+	}
+	//out/////////////////////
+	ft_lstiter(node_front_new, put_content);
+	//delete all node.///////////////////////////////////
+	ft_lstclear(&node_front, free_content);
+	ft_lstclear(&node_front_new, free_content);
+	printf("clear done.\n\n");
 	return (0);
 }

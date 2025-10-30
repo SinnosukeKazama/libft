@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 10:42:26 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 09:02:02 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/27 08:39:17 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/27 09:35:59 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft_bonus.h"
 
-
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !del)
-		return ;
-//printf("lsp:%p, lscon:%p",lst, lst->content);
-	del(lst->content);
-	free(lst);
+	if (lst && *lst && new && (new->next == NULL))
+		new->next = *lst;
 }
