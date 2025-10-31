@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 09:04:22 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 09:42:39 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:16:33 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:16:43 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft_bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_list *ft_lstlast(t_list *lst)
 {
 	t_list	*ptr_l;
-	t_list	*ptr_n;
 
-	ptr_l = *lst;
-	while (ptr_l)
+	ptr_l = lst;
+	if (ptr_l == NULL)
+		return (NULL);
+	while (ft_lstsize(ptr_l) - 1)
 	{
-		ptr_n = ptr_l->next;
-		ft_lstdelone(ptr_l, del);
-		ptr_l = ptr_n;
+		ptr_l = ptr_l->next;
 	}
-	*lst = NULL;
+	return (ptr_l);
 }

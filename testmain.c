@@ -6,13 +6,13 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:34:54 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 12:32:37 by skazama          ###   ########.fr       */
+/*   Updated: 2025/10/31 15:28:19 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft_bonus.h"
 #include <limits.h>
+#include <stdio.h>
 //#include <string.h>
 //#include <stdlib.h>
 static void	free_content(void *delcon)//for lstdelone, lstclear
@@ -224,11 +224,11 @@ int main(void)
 	printf("%s\n", ft_strjoin(s1, s2));
 	*/
 //test strtirm
-/*
-	char s[] = "i am man. good see you again.";
-	char set[] = "me ";
-	printf("%s", ft_strtrim(s, set));
-*/
+
+	char s[] = "  ,!AB!C, ";
+	char set[] = " ,!";
+	printf("%s", ft_strtrim(s, set));//must be "AB!C"
+
 //test strsplit
 /*	char s[] = "  re   using this track, we simply ask that you put this in your description  ";
 	char **d = ft_split(s, ' ');

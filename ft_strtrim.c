@@ -3,48 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/19 14:40:34 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/22 12:41:11 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:31:47 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 15:31:59 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>////////debug
 
-static unsigned int	ft_isnonexis_setchar(const char s1, char const *set)
+char	*skip_set_f(char const *s1, char const *set)
 {
-	size_t	i;
+	char	*ptr;
+	unsigned int	i;
 
 	i = 0;
-	while (set[i] != '\0')
+	while (s1[i])
 	{
-		if (s1 == set[i])
-			return (0);
+		while (set[j])
+		{
+			if (s1[i] == set[j])
+				continue;
+			++j;
+		}	
 		++i;
 	}
-	return (i);
+	return (ptr);
+}
+
+char	*skip_set_r(char const *s1, char const *set)
+{
+	char	*ptr;
+	unsigned int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		ptr = ft_strrchr(s1, set[i]);
+		++i;
+	}
+	return (ptr);
+	
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	const size_t	len_s1 = ft_strlen(s1);
-	char			*s_trimmed;
-	unsigned int	i;
-	unsigned int	j;
-
-	s_trimmed = (char *)ft_calloc(len_s1, sizeof(char));
-	if (s_trimmed)
-	{
-		i = 0;
-		j = 0;
-		while (s1[i] != '\0')
-		{
-			if (ft_isnonexis_setchar(s1[i], set))
-				s_trimmed[j++] = s1[i];
-			++i;
-		}
-		return (s_trimmed);
-	}
+	char	*st;
+	const char	*ptr_f = skip_set_f(s1, set);
+	const char	*ptr_r = skip_set_r(s1, set);
+	
+	st = ft_substr(ptr_f, 0, (size_t)(ptr_r-ptr_f));
+printf("###########In strtrim; st:%s\n",st);
 	return (NULL);
 }
+/*
+s1 = "  !,,,A!BC,,,,"
+set = " ,!"
+
+s_retrun = "A!BC"
+
+*/

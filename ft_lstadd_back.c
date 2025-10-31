@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 10:42:26 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 09:02:02 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:06:39 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:06:45 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft_bonus.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!lst || !del)
+	t_list	*p;
+
+	p  = *lst;
+	if (!p)
+	{
+		*lst = new;
 		return ;
-//printf("lsp:%p, lscon:%p",lst, lst->content);
-	del(lst->content);
-	free(lst);
+	}
+	while (p->next)
+		p = p->next;
+	p->next = new;
 }

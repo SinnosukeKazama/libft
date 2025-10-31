@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 12:36:38 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/29 12:37:01 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:17:15 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:17:34 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft_bonus.h"
 
 t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -34,8 +33,3 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (newnode_front);
 }
-/*
-どこで”必要に応じてdel();を適応”するのか？？
-f:lst_>contentに適応される。任意の機能のために。
-del:lst_>content適応される。lst->contentの削除のために。
-*/

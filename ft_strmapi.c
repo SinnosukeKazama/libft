@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 11:51:43 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/26 14:16:02 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:30:23 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:30:38 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	len = ft_strlen(s);//Is ok?this calling,,
+	len = ft_strlen(s);
 	i = 0;
 	ptr_new = (char *)ft_calloc(len, sizeof(char));
 	if (!ptr_new)

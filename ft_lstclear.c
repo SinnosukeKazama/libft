@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 08:39:17 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/27 09:35:59 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:15:11 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:15:24 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft_bonus.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (lst && *lst && new && (new->next == NULL))
-		new->next = *lst;
+	t_list	*ptr_l;
+	t_list	*ptr_n;
+	ptr_l = *lst;
+	while (ptr_l)
+	{
+		ptr_n = ptr_l->next;
+		ft_lstdelone(ptr_l, del);
+		ptr_l = ptr_n;
+	}
+	*lst = NULL;
 }

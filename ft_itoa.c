@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 08:06:21 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/24 09:58:44 by skazama          ###   ########.fr       */
+/*   Created: 2025/10/31 14:13:03 by skazama           #+#    #+#             */
+/*   Updated: 2025/10/31 14:13:17 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static signed char	ft_is_sign(int *ptr_n)
 {
 	if (*ptr_n < 0)
