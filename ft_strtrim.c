@@ -11,51 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>////////debug
-
-char	*skip_set_f(char const *s1, char const *set)
-{
-	char	*ptr;
-	unsigned int	i;
-
-	i = 0;
-	while (s1[i])
-	{
-		while (set[j])
-		{
-			if (s1[i] == set[j])
-				continue;
-			++j;
-		}	
-		++i;
-	}
-	return (ptr);
-}
-
-char	*skip_set_r(char const *s1, char const *set)
-{
-	char	*ptr;
-	unsigned int	i;
-
-	i = 0;
-	while (set[i])
-	{
-		ptr = ft_strrchr(s1, set[i]);
-		++i;
-	}
-	return (ptr);
-	
-}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*st;
-	const char	*ptr_f = skip_set_f(s1, set);
-	const char	*ptr_r = skip_set_r(s1, set);
-	
-	st = ft_substr(ptr_f, 0, (size_t)(ptr_r-ptr_f));
-printf("###########In strtrim; st:%s\n",st);
-	return (NULL);
+	unsigned int	i_f;
+	unsigned int	i_r;
+
+	if (!s1 || !set)
+		return (calloc(1, sizeof(char)));
+	i_f = 0;
+	i_r = ft_strlen(s1);
+	while (s1[i_f] && ft_strchr(set, s1[i_f]))
+		++i_f;
+	while (i_r > i_f && ft_strchr(set, s1[i_r - 1]))
+		--i_r;
+	return (ft_substr(s1, i_f, i_r - i_f));
 }
 /*
 s1 = "  !,,,A!BC,,,,"

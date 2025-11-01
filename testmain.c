@@ -15,6 +15,7 @@
 #include <stdio.h>
 //#include <string.h>
 //#include <stdlib.h>
+//コンパイル時：gcc testmain.c -L. libft.a(windowsで動作確認
 static void	free_content(void *delcon)//for lstdelone, lstclear
 {
 	free(delcon);
@@ -52,7 +53,8 @@ int main(void)
 	ft_putendl_fd("",1);
 
 //test memset
-/*	char buf1[0x3];
+	ft_putendl_fd("test memset----------------------",1);
+	char buf1[0x3];
 	char buf2[0xf];
 	ft_bzero(buf1, 0x2);	
 	ft_bzero(buf2, 0xf);
@@ -63,73 +65,82 @@ int main(void)
 	ft_memset(buf1, 'A', 4);//はみ出る
 	ft_memset(buf2, 'b', 6);//b *6
 	printf("%s\n", buf1);
-	printf("%s\n", buf2);*/
+	printf("%s\n", buf2);
 //test memcpy
-/*
-	char buf1[] = "abcdef";	
+	ft_putendl_fd("test memcpy----------------------",1);
+	char buf3[] = "abcdef";	
 	
-	printf("\nmemcpy's works:%s", (char *)ft_memcpy(buf1+2, buf1, 4));//abcd
+	printf("\nmemcpy's works:%s", (char *)ft_memcpy(buf3+2, buf3, 4));//abcd
 
 //test memmove
-	char buf2[] = "abcdef";
-	printf("\nmemmove's works:%s", (char *)ft_memmove(buf2+2, buf2, 4));//abcd
-*/
-//test strlcpy
-/*
-	char *s = "ABC";
-	char d[16];
-//	printf("%ld, %s",strlcpy(d, s, 3), d);//3, AB
-//	printf("%ld, %s", strlcpy(d, s, 5), d);//3, ABC
-//	printf("%ld, %s", strlcpy(d, s, 2), d);//3, A
+	ft_putendl_fd("test memmove----------------------",1);
+	char buf4[] = "abcdef";
+	printf("\nmemmove's works:%s", (char *)ft_memmove(buf4+2, buf4, 4));//abcd
 
-	printf("%ld, %s",ft_strlcpy(d, s, 3), d);//3, AB
-	printf("%ld, %s", ft_strlcpy(d, s, 5), d);//3, ABC
-	printf("%ld, %s", ft_strlcpy(d, s, 2), d);//3, A
-	printf("%ld, %s", ft_strlcpy(d, s, 0), d);//3, 
-*/
+//test strlcpy
+
+	ft_putendl_fd("test strcpy----------------------",1);
+	char s0[] = "ABC";
+	char d[16];
+	//printf("%ld, %s\n",strlcpy(d, s0, 3), d);//3, AB
+//	printf("%ld, %s\n", strlcpy(d, s0, 5), d);//3, ABC
+//	printf("%ld, %s\n", strlcpy(d, s0, 2), d);//3, A
+
+	printf("%ld, %s\n",ft_strlcpy(d, s0, 3), d);//3, AB
+	printf("%ld, %s\n", ft_strlcpy(d, s0, 5), d);//3, ABC
+	printf("%ld, %s\n", ft_strlcpy(d, s0, 2), d);//3, A
+	printf("%ld, %s\n", ft_strlcpy(d, s0, 0), d);//3, 
+
 //test toupper, tolower
-/*	char c = 'w';
-	char d = 'X';
+
+	ft_putendl_fd("test toup,low----------------------",1);
+	char c = 'w';
+	char c1 = 'X';
 	printf("\n%c, %c", ft_toupper(c), ft_tolower(c));//W, w	
-	printf("\n%c, %c", ft_toupper(d), ft_tolower(d));//X, x
-*/
+	printf("\n%c, %c", ft_toupper(c1), ft_tolower(c1));//X, x
+
 //test strchr, strrchr
-/*	
-	char s[] = "ABC";
-	printf("\nstrchr's work:%s", ft_strchr(s, 'A'));//ABC
-	printf("\nstrrchr's work:%s", ft_strrchr(s, 'A'));//ABC
-	printf("\nstrrchr's work:%s", ft_strrchr(s, 'C'));//C
+
+	ft_putendl_fd("test strchr, strrchr----------------------",1);
+	char s1[] = "ABC";
+	printf("\nstrchr's work:%s", ft_strchr(s1, 'A'));//ABC
+	printf("\nstrrchr's work:%s", ft_strrchr(s1, 'A'));//ABC
+	printf("\nstrrchr's work:%s", ft_strrchr(s1, 'C'));//C
 	char t[] = "ABCA";
 	printf("\nstrchr's work:%s", ft_strchr(t, 'A'));//ABCA
 	printf("\nstrrchr's work:%s", ft_strrchr(t, 'A'));//A
-	printf("\nstrrchr's work:%s", ft_strrchr(t, 'C'));//CA
-	*/
+	printf("\nstrrchr's work:%s\n", ft_strrchr(t, 'C'));//CA
+
 //test memchr
-/*	char s[] = "ABCD";
-	printf("%s", (char *)ft_memchr(s, 'B', 4));//BCD
-	printf("\n%s", (char *)ft_memchr(s, 'F', 4));//null
-*/
+	ft_putendl_fd("test memchr----------------------",1);
+	char s2[] = "ABCD";
+	printf("%s", (char *)ft_memchr(s2, 'B', 4));//BCD
+	printf("\n%s", (char *)ft_memchr(s2, 'F', 4));//null
+
 //test memcmp
-/*	char s[] = "ABCD";
-	char t[] = "ABDF";
+	ft_putendl_fd("test memcmp----------------------",1);
+	char s3[] = "ABCD";
+	char t1[] = "ABDF";
 	char u[] = "ABCZ";
-	printf("%d", memcmp(s,t,3));//-1
-	printf("%d", memcmp(s,t,2));//0
-	printf("%d", memcmp(s,u,4));//-22
-	printf("\n%d", ft_memcmp(s,t,3));//-1
-	printf("%d", ft_memcmp(s,t,2));//0
-	printf("%d", ft_memcmp(s,u,4));//-22
-*/
+	printf("%d", memcmp(s3,t1,3));//-1
+	printf("%d", memcmp(s3,t1,2));//0
+	printf("%d", memcmp(s3,u,4));//-22
+	printf("\n%d", ft_memcmp(s3,t1,3));//-1
+	printf("%d", ft_memcmp(s3,t1,2));//0
+	printf("%d", ft_memcmp(s3,u,4));//-22
+
 //test strnstr
-/*	char b[] = "ABCDEF";
-	char l[]void (*del)(void = "CD";
+	ft_putendl_fd("test strnstr----------------------",1);
+	char b[] = "ABCDEF";
+	char l[] = "CD";
 	char e[] = {'\0'};	
 	printf("%s\n", ft_strnstr(b, e, ft_strlen(b)));//ABCDEF	
 	printf("%p\n", ft_strnstr(b, "FG", ft_strlen(b)));//null	
 	printf("%s\n", ft_strnstr(b, l, ft_strlen(b)));//CDEF	
-*/
+
 //test atoi
-/*	
+	
+	ft_putendl_fd("test atoi----------------------",1);
 	printf("atoi:%d\n", atoi(" 100"));//100
 	printf("atoi:%d\n", atoi(" str"));//0	
 	printf("atoi:%d\n", atoi("\t\v 222"));//222	
@@ -142,7 +153,7 @@ int main(void)
 	printf("ft_atoi:%d\n", ft_atoi("\t\v 222"));//222	
 	printf("ft_atoi:%d\n", ft_atoi(" -123str"));//123	
 	printf("ft_atoi:%d\n", ft_atoi(" -2147483649"));//0
-*/
+
 //test calloc
 /*	char	*s = (char *)calloc(3, sizeof(char));
 	int	*n = (int *)calloc(3, sizeof(int));
@@ -225,10 +236,27 @@ int main(void)
 	*/
 //test strtirm
 
-	char s[] = "  ,!AB!C, ";
+	ft_putendl_fd("test strtrim----------------------",1);
+	char s4[] = "  ,!AB!C, ";
 	char set[] = " ,!";
-	printf("%s", ft_strtrim(s, set));//must be "AB!C"
-
+	char *ds4 = ft_strtrim(s4, set);
+	printf("s:\t#%s# set:\t#%s# trm:\t#%s#\n",s4,set, ds4);//must be "AB!C"
+	char s5[] = "xxxyyyxyxyAxy";
+	char set1[] = "xy";
+	char *ds5 = ft_strtrim(s5, set1);
+	printf("s:\t#%s# set:\t#%s# trm:\t#%s#\n",s5,set1, ds5);//must be "A"
+	char s6[] = "ABCD";
+	char set2[] = "X";
+	char *ds6 = ft_strtrim(s6, set2);
+	printf("s:\t#%s# set:\t#%s# trm:\t#%s#\n",s6,set2, ds6);//must be "AB!C"
+	char s7[] = "ABCD";
+	char *set3 = NULL;
+	char *ds7 = ft_strtrim(s6, set3);
+	printf("s:\t#%s# set:\t%p trm:\t#%s#\n",s7,set3, ds7);//must be "AB!C"
+	free(ds4);
+	free(ds5);
+	free(ds6);
+	free(ds7);
 //test strsplit
 /*	char s[] = "  re   using this track, we simply ask that you put this in your description  ";
 	char **d = ft_split(s, ' ');
@@ -247,6 +275,7 @@ int main(void)
 	}
 */
 
+	ft_putendl_fd("test itoa----------------------",1);
 	int	n = INT_MAX;
 	printf("int:%d#itoa:%s#\n", n+1,ft_itoa(n+1));//must be undefine move.
 	printf("int:%d#itoa:%s#\n", n, ft_itoa(n));
@@ -266,16 +295,15 @@ int main(void)
 	ft_putendl_fd(0, 1);//nothing output -> ok
 //test lstnew
 //test lstadd_front, lstsize
-/*	
-	ft_putendl_fd("test lstnew------------------", 1);
-	ft_putendl_fd("test lstadd_front, lstsize------------------", 1);	
+/*
+	ft_putendl_fd("test lstnew lstadd_front, lstsize------------------", 1);
 	
 	printf("lstsize:%d\n",ft_lstsize(NULL));//must be 3->ok
 	printf("last of list:%p\n", ft_lstlast(NULL));//must be l1`s ptr.->ok
-	char *c1 = ft_strdup("THIS IS CONTENT OF L1.");
-	if (!c1)
+	char *co1 = ft_strdup("THIS IS CONTENT OF L1.");
+	if (!co1)
 		return (1);
-	t_list *l1 = ft_lstnew(c1);
+	t_list *l1 = ft_lstnew(co1);
 	if (l1)
 	{
 		ft_putendl_fd(l1->content, 1);//ok
@@ -284,10 +312,10 @@ int main(void)
 	printf("l1:%p, l1->content:%p, l1->next:%p\n",l1, l1->content, l1->next);
 	printf("last of list:%p\n", ft_lstlast(l1));//must be l1`s ptr.->ok	
 	
-	char *c2 = ft_strdup("THIS IS CONTENT OF L2.");
-	if (!c2)
+	char *co2 = ft_strdup("THIS IS CONTENT OF L2.");
+	if (!co2)
 		return (1);
-	t_list *l2 = ft_lstnew(c2);
+	t_list *l2 = ft_lstnew(co2);
 	if (l2)
 	{
 		ft_lstadd_front(&l1, l2);// (front) l2->l1 (end)
@@ -295,10 +323,10 @@ int main(void)
 	printf("l1:%p, l1->content:%p, l1->next:%p\n",l1, l1->content, l1->next);
 	printf("l2:%p, l2->content:%p, l2->next:%p\n",l2, l2->content, l2->next);//must be begginning
 	printf("lstsize:%d\n",ft_lstsize(l2));//must be 2->ok
-	char *c3 = ft_strdup("THIS IS CONTENT OF L3.");
-	if (!c3)
+	char *co3 = ft_strdup("THIS IS CONTENT OF L3.");
+	if (!co3)
 		return (1);
-	t_list *l3 = ft_lstnew(c3);
+	t_list *l3 = ft_lstnew(co3);
 	if (l3)
 	{
 		ft_lstadd_front(&l2, l3);// (front) l3->l2->l1 (end)
@@ -309,15 +337,15 @@ int main(void)
 	printf("lstsize:%d\n",ft_lstsize(l3));//must be 3->ok
 	printf("last of list:%p\n", ft_lstlast(l3));//must be l1`s ptr.->ok
 //test lstdelone
-//	ft_lstdelone(l2, free_content);
 	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
 	printf("l2:%p, l2->content:%p(%s), l2->next:%p\n",l2, l2->content,(char *)l2->content, l2->next);
 	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);
 //test lstclear
 	ft_lstclear(&l2, free_content);
-	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
-	printf("l2:%p, l2->content:%p(%s)",l2, l2->content,(char *)l2->content);//must be delete,and ptr_l2 = NULL. 
-	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);//must be exsit.
+//	printf("l1:%p, l1->content:%p(%s), l1->next:%p\n",l1, l1->content,(char *)l1->content, l1->next);
+//	printf("l2:%p, l2->content:%p(%s)",l2, l2->content,(char *)l2->content);//must be delete,and ptr_l2 = NULL. 
+//	printf("l3:%p, l3->content:%p(%s), l3->next:%p\n",l3, l3->content,(char *)l3->content, l3->next);//must be exsit.
+	printf("last of list:%p\n", ft_lstlast(l3));//must be l1`s ptr.->ok
 	ft_lstclear(&l3, free_content);//must be NON LEAK->ok.
 */
 //test lstadd_back
