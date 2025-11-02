@@ -14,16 +14,20 @@ OBJS	:= $(SRCS:.c=.o)
 OBJSB	:= $(SRCSB:.c=.o)
 
 ##################################
+
 #静的ファイル生成
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
-
+	
+bonus: $(OBJS) $(OBJSB)
+	ar rc $(NAME) $(OBJS) $(OBJSB)
+	ranlib $(NAME)
 #上
 all: $(NAME)
 #依存関係。.cから.o作成：コンパル指定、依存ファイル名に置き換え。ターゲットファイル名に置き換え。
 %.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 #.o 実行ファイル　.dを削除
 clean:
@@ -35,8 +39,5 @@ fclean: clean
 #fclean +all
 re: fclean all
 
-bonus: $(OBJSB)
-	ar rc $(NAME) $(OBJSB)
-	ranlib $(NAME)
 #もしカレントディレクトリに同名ファイルがあったときの対策。
 .PHONY: all clean fclean re bonus

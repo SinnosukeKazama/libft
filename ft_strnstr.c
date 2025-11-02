@@ -27,10 +27,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	while (i < len && ptr_b[i] != '\0')
 	{
 		j = 0;
-		while (ptr_b[i + j] == ptr_l[j])
+		while (i + j < len && ptr_b[i + j] == ptr_l[j])
 		{
 			++j;
-			if (ptr_l[j] == '\0')
+			if (ptr_l[j] == '\0' )
 				return (&ptr_b[i]);
 		}
 		++i;

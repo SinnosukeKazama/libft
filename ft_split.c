@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:26:53 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:27:02 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/02 23:17:23 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,21 @@ static size_t	ft_count_row(const char c, const char *s)
 {
 	size_t	i;
 	size_t	row;
+	int isword;
 
 	i = 0;
-	row = 1;
+	row = 0;
+	isword = 0;
 	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+		if (s[i] != c)
 		{
-			++row;
+			if (isword == 0)
+				++row;
+			isword = 1;
 		}
+		else if (s[i] == c)
+			isword = 0;	
 		++i;
 	}
 	return (row);
@@ -86,8 +92,18 @@ char	**ft_split(const char *s, char c)
 	char	*ptr_s;
 
 	ptr_s = (char *)s;
-	while (*ptr_s == c)
-		++ptr_s;
+	if (!ptr_s)
+	{
+		s_spl = (char **)calloc(1, sizeof(char *));
+		if (!s_spl)
+			return (NULL);
+		s_spl[0] = (char *)calloc(1, sizeof(char));
+		return (s_spl);
+	}
+	//while (*ptr_s == c)
+	//	++ptr_s;
+	//if ((size_t)(ptr_s - s) >= ft_strlen(s))
+	//	return (malloc(1));
 	row = ft_count_row(c, ptr_s);
 	s_spl = (char **)ft_calloc(row + 1, sizeof(char *));
 	if (!s_spl)
@@ -95,7 +111,6 @@ char	**ft_split(const char *s, char c)
 	s_spl = ft_makesubstr(s_spl, ptr_s, c, row);
 	if (!s_spl)
 		return (NULL);
-	s_spl[row] = NULL;
 	return (s_spl);
 }
 /*

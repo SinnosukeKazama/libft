@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:13:03 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:13:17 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/01 21:04:36 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static signed char	ft_is_sign(int *ptr_n)
 	else
 		return (1);
 }
+
 static size_t	ft_count_digit(unsigned int n)
 {
 	size_t	count;
@@ -35,7 +36,8 @@ static size_t	ft_count_digit(unsigned int n)
 	return (count);
 }
 
-static char	*ft_numstr(char *ptr, unsigned int n, size_t digit,  const int pos_or_neg)
+static char	*ft_numstr(char *ptr, unsigned int n, size_t digit,
+		const int pos_or_neg)
 {
 	if (pos_or_neg == -1)
 		ptr[0] = '-';
@@ -46,7 +48,7 @@ static char	*ft_numstr(char *ptr, unsigned int n, size_t digit,  const int pos_o
 		if (pos_or_neg == -1)
 			ptr[digit] = n % 10 + '0';
 		else
-			ptr[digit - 1] = n % 10 + '0';	
+			ptr[digit - 1] = n % 10 + '0';
 		n /= 10;
 		--digit;
 	}
@@ -55,9 +57,9 @@ static char	*ft_numstr(char *ptr, unsigned int n, size_t digit,  const int pos_o
 
 char	*ft_itoa(int n)
 {
-	char	*ptr;
-	size_t	digit;
-	const	signed char	pos_or_neg = ft_is_sign(&n);
+	char				*ptr;
+	size_t				digit;
+	const signed char	pos_or_neg = ft_is_sign(&n);
 
 	digit = ft_count_digit((unsigned int)n);
 	if (pos_or_neg == -1)

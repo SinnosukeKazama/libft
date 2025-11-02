@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:30:23 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:30:38 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/01 21:02:17 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char *ptr_new;
-	size_t	len;
+	char			*ptr_new;
+	size_t			len;
 	unsigned int	i;
 
 	if (!s || !f)
@@ -27,12 +27,12 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (i < len)
 	{
-		ptr_new[i] = f(i , s[i]);
+		ptr_new[i] = f(i, s[i]);
 		++i;
 	}
 	return (ptr_new);
 }
-//test strmapi
+// test strmapi
 /*
 static size_t	f3_len(const char *s)
 {
@@ -64,7 +64,7 @@ int	main(void)
 	ptr_f2 = f2_up_or_low;
 	ptr_f = ft_strmapi;
 
-	const char s[] = "You can pack up a suitcase and hop on the airplaneWhenever your sunshine turns to rain When you're feeling homesick You know where my heart is I'm only a thousand, thousand, thousand miles away";
+	const char s[] = "You can pack up a";
 	char *ptr_new = ptr_f(s, ptr_f2);
 	ptr_f2 = f2_oneplus_alphabet_to50;
 	char *ptr_new2 = ptr_f(s, ptr_f2);

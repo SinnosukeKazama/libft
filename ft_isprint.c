@@ -15,7 +15,7 @@
 int	ft_isprint(int c)
 {
 	if (0x20 <= c && c <= 0x7e)
-		return (c);
+		return (1);
 	else
 		return (0);
 }
