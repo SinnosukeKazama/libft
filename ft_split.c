@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:26:53 by skazama           #+#    #+#             */
-/*   Updated: 2025/11/02 23:17:23 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 04:10:53 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	ft_strlento(const char c, const char *s)
 	return (i);
 }
 
-static void	free_all(char **s, size_t index)
+static char	**free_all(char **s, size_t index)
 {
 	size_t	i;
 
@@ -33,17 +33,20 @@ static void	free_all(char **s, size_t index)
 		++i;
 	}
 	free(s);
+	return (NULL);
 }
 
 static size_t	ft_count_row(const char c, const char *s)
 {
 	size_t	i;
 	size_t	row;
-	int isword;
+	int		isword;
 
 	i = 0;
 	row = 0;
 	isword = 0;
+	if (!s)
+		return (row);
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -53,32 +56,33 @@ static size_t	ft_count_row(const char c, const char *s)
 			isword = 1;
 		}
 		else if (s[i] == c)
-			isword = 0;	
+			isword = 0;
 		++i;
 	}
 	return (row);
 }
 
-static char	**ft_makesubstr(char **s_spl, char *ptr_s, char c, size_t row)
+static char	**ft_makesubstr(char **s_spl, const char *ptr_s, char c, size_t row)
 {
-	size_t	i;
-	size_t	j;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
 	j = 0;
-	s_spl[j] = ft_substr(ptr_s, i, ft_strlento(c, ptr_s));
+	while (ptr_s[i] == c && ptr_s[i] != '\0')
+		++i;
+	s_spl[j++] = ft_substr(ptr_s, i, ft_strlento(c, &ptr_s[i]));
+	if (!s_spl[j - 1])
+		return (free_all(s_spl, j - 1));
 	while (ptr_s[i] != '\0' && j < row)
 	{
 		if (ptr_s[i] == c)
 		{
 			while (ptr_s[i] == c && ptr_s[i] != '\0')
 				++i;
-			s_spl[++j] = ft_substr(&ptr_s[i], 0, ft_strlento(c, &ptr_s[i]));
-			if (!s_spl[j])
-			{
-				free_all(s_spl, j);
-				return (NULL);
-			}
+			s_spl[j++] = ft_substr(&ptr_s[i], 0, ft_strlento(c, &ptr_s[i]));
+			if (!s_spl[j - 1])
+				return (free_all(s_spl, j - 1));
 		}
 		++i;
 	}
@@ -89,26 +93,20 @@ char	**ft_split(const char *s, char c)
 {
 	char	**s_spl;
 	size_t	row;
-	char	*ptr_s;
 
-	ptr_s = (char *)s;
-	if (!ptr_s)
+	row = ft_count_row(c, s);
+	if (!s || s[0] == '\0' || !row)
 	{
-		s_spl = (char **)calloc(1, sizeof(char *));
+		s_spl = (char **)ft_calloc(1, sizeof(char *));
 		if (!s_spl)
 			return (NULL);
-		s_spl[0] = (char *)calloc(1, sizeof(char));
+		s_spl[0] = NULL;
 		return (s_spl);
 	}
-	//while (*ptr_s == c)
-	//	++ptr_s;
-	//if ((size_t)(ptr_s - s) >= ft_strlen(s))
-	//	return (malloc(1));
-	row = ft_count_row(c, ptr_s);
 	s_spl = (char **)ft_calloc(row + 1, sizeof(char *));
 	if (!s_spl)
 		return (NULL);
-	s_spl = ft_makesubstr(s_spl, ptr_s, c, row);
+	s_spl = ft_makesubstr(s_spl, s, c, row);
 	if (!s_spl)
 		return (NULL);
 	return (s_spl);

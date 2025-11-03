@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:30:23 by skazama           #+#    #+#             */
-/*   Updated: 2025/11/01 21:02:17 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 00:45:32 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	len = ft_strlen(s);
 	i = 0;
-	ptr_new = (char *)ft_calloc(len, sizeof(char));
+	ptr_new = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!ptr_new)
 		return (NULL);
 	while (i < len)

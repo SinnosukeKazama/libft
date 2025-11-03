@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:31:34 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:31:37 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:39:29 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 		if (ptr_s[i] == (char)c)
 			return (&ptr_s[i]);
 		if (i == 0)
-			break;
+			break ;
 		--i;
 	}
 	return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:21:32 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:21:40 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:41:05 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 				continue ;
 			else
 				return (ptr_1[i] - ptr_2[i]);
+			if (!ptr_1 || !ptr_2)
+				break ;
 		}
 	}
 	return (0);

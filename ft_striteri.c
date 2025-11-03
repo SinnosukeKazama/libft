@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:28:29 by skazama           #+#    #+#             */
-/*   Updated: 2025/11/01 21:01:58 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:40:54 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		return ;
 	while (s[i] != '\0')
 	{
-		f(i, s);
+		f(i, &s[i]);
 		++i;
 	}
 }
-/*
-
-test striteri
-void	f(unsigned int i, char *p)
-{
-	p[i] = ft_toupper(p[i]);
-}
-int	main(void)
-{
-	char	s[] = "Applies the function";
-
-	ft_striteri(s, f);
-	ft_putstr_fd(s,1);
-	return (0);
-}
-*/

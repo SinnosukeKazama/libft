@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:22:09 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:23:07 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 02:31:27 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const unsigned char	*ptr_s = (unsigned char *)src;
+	const unsigned char	*ptr_s = (const unsigned char *)src;
 	unsigned char		*ptr_d;
 	size_t				i;
 
 	ptr_d = (unsigned char *)dest;
+	if (ptr_s == ptr_d)
+		return (dest);
 	if (ptr_d > ptr_s)
 	{
-		i = n;
-		while (i > 0)
-		{
+		i = n + 1;
+		while (--i > 0)
 			ptr_d[i - 1] = ptr_s[i - 1];
-			--i;
-		}
 	}
 	else
 	{
-		i = 0;
-		while (i < n)
-		{
+		i = -1;
+		while (++i < n)
 			ptr_d[i] = ptr_s[i];
-			++i;
-		}
 	}
 	return (dest);
 }

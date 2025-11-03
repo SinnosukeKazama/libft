@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:32:03 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:32:13 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:40:18 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	size_allocate;
 
 	i = 0;
-	while (s[start + i] != '\0' && i < len)
-		++i;
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
 	if (start > ft_strlen(s) - 1)
 		start = ft_strlen(s);
+	while (s[start + i] != '\0' && i < len)
+		++i;
 	size_allocate = i + 1;
 	subs = (char *)ft_calloc(size_allocate, sizeof(char));
 	if (subs)
