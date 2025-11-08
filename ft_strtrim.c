@@ -18,7 +18,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	unsigned int	i_r;
 
 	if (!s1 || !set)
-		return (calloc(1, sizeof(char)));
+		return (ft_calloc(1, sizeof(char)));
 	i_f = 0;
 	i_r = ft_strlen(s1);
 	while (s1[i_f] && ft_strchr(set, s1[i_f]))
