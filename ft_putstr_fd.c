@@ -14,16 +14,14 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned int	i;
-	ssize_t			byt_written;
+	size_t	i;
 
 	i = 0;
 	if (!s)
 		return ;
 	while (s[i] != '\0')
 	{
-		byt_written = write(fd, &s[i++], 1);
-		if (byt_written <= 0)
-			break ;
+		ft_putchar_fd(s[i], fd);
+		++i;
 	}
 }

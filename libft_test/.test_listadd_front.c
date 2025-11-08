@@ -28,7 +28,8 @@ int main(void)
 		printf("elem4: %p, ->next:%p\n",elem4, elem4->next); 	
 		printf("elem3: %p, ->next:%p\n",elem3, elem3->next); 	
 		printf("elem2: %p, ->next:%p\n",elem2, elem2->next); 	
-		printf("elem : %p, ->next:%p\n",elem , elem->next); 	
+		printf("elem : %p, ->next:%p\n",elem , elem->next); 
+		printf("list size: %d\n", ft_lstlast(elem));	
 		while (begin)
 		{
 			printf("%s" ,(char *)begin->content);

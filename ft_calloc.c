@@ -17,14 +17,12 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 	size_t	size_allocate;
 
-	size_allocate = size * nmemb;
-	if (size_allocate == 0)
-		size_allocate = 1;
-	else if (size != 0 && nmemb > SIZE_MAX / size)
+	if (size != 0 && nmemb != 0 && nmemb > SIZE_MAX / size)
 		return (NULL);
+	size_allocate = size * nmemb;
 	ptr = malloc(size_allocate);
 	if (!ptr)
 		return (NULL);
-	ptr = ft_memset(ptr, 0, size_allocate);
+	ft_bzero(ptr, size_allocate);
 	return (ptr);
 }

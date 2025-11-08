@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s)
 	const size_t	element_n = ft_strlen(s) + 1;
 	char			*dest;
 
+	if (!s)
+		return (ft_calloc(element_n, sizeof(char)));
 	dest = (char *)ft_calloc(element_n, sizeof(char));
 	if (dest)
 	{

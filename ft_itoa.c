@@ -69,7 +69,5 @@ char	*ft_itoa(int n)
 	if (!ptr)
 		return (NULL);
 	ptr = ft_numstr(ptr, (unsigned int)n, digit, pos_or_neg);
-	if (!ptr)
-		return (NULL);
 	return (ptr);
 }

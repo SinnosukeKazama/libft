@@ -19,9 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	ptr_l = lst;
 	if (ptr_l == NULL)
 		return (NULL);
-	while (ft_lstsize(ptr_l) - 1)
-	{
+	while (ptr_l->next)
 		ptr_l = ptr_l->next;
-	}
 	return (ptr_l);
 }
