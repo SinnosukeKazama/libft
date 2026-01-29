@@ -14,8 +14,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rsc $(NAME) $(OBJS)
 	
-bonus: $(OBJS) $(OBJSB)
-	ar rsc $(NAME) $(OBJS) $(OBJSB)
+bonus: all $(OBJSB)
+	ar rsc $(NAME) $(OBJSB)
 
 clean:
 	rm -f $(OBJS) $(OBJSB)

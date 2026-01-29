@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skazama <skazama@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:29:07 by skazama           #+#    #+#             */
-/*   Updated: 2025/10/31 14:29:27 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/09 13:04:56 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	dest_len;
-	size_t	src_len;
-	size_t	i;
+	const size_t	dest_len = ft_strlen(dest);
+	const size_t	src_len = ft_strlen(src);
+	size_t			i;
 
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
 	i = 0;
+	if (!dest || !src)
+		return (0);
 	if (size <= dest_len)
 		return (size + src_len);
 	while (src[i] != '\0' && i < size - dest_len - 1)
@@ -37,7 +37,7 @@ src..."ABC".3
 size..9
 
 (i < size - dest_len - 1)
-5-3-1=1 -> 
+5-3-1=1 ->
 7-3-1=3
 9-3-1=5
 

@@ -6,7 +6,7 @@
 /*   By: skazama <skazama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:17:15 by skazama           #+#    #+#             */
-/*   Updated: 2025/11/01 21:03:29 by skazama          ###   ########.fr       */
+/*   Updated: 2025/11/09 10:59:10 by skazama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newnode_front;
 	t_list	*newnode;
+	void	*newcont;
 
 	if (!lst || !f || !del)
-		return (ft_calloc(1, sizeof(t_list)));
+		return (NULL);
 	newnode_front = NULL;
 	while (lst)
 	{
-		newnode = ft_lstnew(f(lst->content));
+		newcont = f(lst->content);
+		newnode = ft_lstnew(newcont);
 		if (!newnode)
 		{
+			del(newcont);
 			ft_lstclear(&newnode_front, del);
 			return (NULL);
 		}
