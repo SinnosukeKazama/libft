@@ -67,7 +67,7 @@ int	ft_atoi(const char *nptr)
 			sign *= -1;
 		++i;
 	}
-	if (ptr[i] < '0' && '9' < ptr[i])
+	if (ptr[i] < '0' || '9' < ptr[i])//it was "&&", so fixed "||".
 		return (0);
 	j = 0;
 	while (ft_isdigit(ptr[i + j]))
